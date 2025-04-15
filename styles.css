@@ -1,0 +1,237 @@
+/* Reset básico para margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte padrão para o site */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFE1C5;
+    /* tom suave para confeitaria */
+    color: #492E1D;
+    line-height: 1.6;
+    padding: 0 20px 40px;
+}
+
+/* Rolagem suave para âncoras */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Cabeçalho fixo e estilizado */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #F5F5DC;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.header img {
+    max-width: 150px;
+    height: auto;
+    margin-left: 10px;
+}
+
+/* Slogan abaixo do logo */
+.header p {
+    background-color: #D2B48C;
+    padding: 5px 15px;
+    margin-top: 10px;
+    display: inline-block;
+    font-style: italic;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+/* Menu de navegação */
+.header nav {
+    margin-top: 15px;
+}
+
+.header nav a {
+    font-family: 'Cursive', sans-serif;
+    text-decoration: none;
+    color: #492E1D;
+    font-size: 18px;
+    margin: 0 20px;
+    transition: color 0.3s ease;
+}
+
+.header nav a:hover,
+.header nav a:focus {
+    color: #A0522D;
+    /* tom mais escuro para hover */
+    outline: none;
+}
+
+/* Seção da imagem principal */
+section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Formulário de pedido */
+.formulario-pedido {
+    max-width: 500px;
+    margin: 40px auto 0;
+    background-color: #fff8dc;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-pedido h2 {
+    text-align: center;
+    color: #492E1D;
+    margin-bottom: 25px;
+    font-family: 'Cursive', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+/* Grupos de campos */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.form-group select,
+.form-group input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #D2B48C;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input[type="number"]:focus {
+    border-color: #A0522D;
+    outline: none;
+}
+
+/* Botão enviar */
+button[type="submit"] {
+    width: 100%;
+    background-color: #A0522D;
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background-color: #7B3F1A;
+    outline: none;
+}
+
+/* Seção Sobre Nós */
+.sobre-nos {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff8dc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #492E1D;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sobre-nos h2 {
+    font-family: 'Cursive', sans-serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sobre-nos p {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.produtos-miniaturas {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.produto {
+    width: 200px;
+    text-align: center;
+}
+
+.produto img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.produto img:hover,
+.produto img:focus {
+    transform: scale(1.05);
+    outline: none;
+}
+
+.produto p {
+    margin-top: 10px;
+    font-weight: 600;
+    font-family: 'Cursive', sans-serif;
+    font-size: 16px;
+    color: #7B3F1A;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .header nav a {
+        margin: 0 10px;
+        font-size: 16px;
+    }
+
+    .formulario-pedido {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+
+    .produtos-miniaturas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .produto {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    
+}
