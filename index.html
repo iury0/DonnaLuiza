@@ -6,276 +6,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Donna Luiza</title>
     <link rel="stylesheet" href="styles.css" />
-    <style>
-        body {
-            background-color: #FFE1C5;
-        }
-
-        .imagem-principal {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .imagem-principal img {
-            max-width: 50%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .header {
-            padding: 18px;
-            /* Aumenta o espaçamento interno do header */
-            background-color: #F5F5DC;
-            /* Adiciona uma cor de fundo ao header */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* Adiciona uma sombra leve */
-        }
-
-        .header nav {
-            display: flex;
-            justify-content: space-between;
-            /* Distribui os itens do menu */
-            align-items: center;
-        }
-
-        .header nav a {
-            margin-right: 20px;
-            /* Espaçamento entre os links */
-        }
-    </style>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header class="header" role="banner">
-        <img src="logo.png" alt="Confeitaria da Luíza Logo" />
+        <img src="imagens/logo.png" alt="Confeitaria da Luíza Logo" />
         <p class="slogan">Especialista em cake design</p>
         <nav role="navigation" aria-label="Menu principal">
-            <a href="#sobre-nos">Sobre nós</a>
-            <a href="#tamanho">Tamanhos de Bolos</a>
-            <a href="#cardapio">Cardápio</a>
+            <a href="#">Sobre nós</a>
+            <a href="#2">Cardápio e tamanhos</a>
             <a href="#formulario-pedido">Faça seu pedido</a>
-            <a href="#">Contato</a>
+            <a href="#redes-sociais">Contato</a>
         </nav>
     </header>
 
-    <!-- Nova seção Sobre Nós -->
-    <section id="sobre-nos" class="sobre-nos" aria-label="Sobre a Confeitaria Donna Luíza">
+    <!-- Seção Sobre Nós -->
+    <section id="tamanho" class="sobre-nos" aria-label="Sobre a Confeitaria Donna Luíza">
         <h2>Sobre nós</h2>
         <p>
             A Confeitaria Donna Luiza é especializada em cake design, oferecendo bolos artesanais feitos com
             ingredientes selecionados e muito amor. Nosso compromisso é transformar seus momentos em celebrações
             inesquecíveis.
         </p>
-        <div class="produtos-miniaturas">
+        <div class="produtos-miniaturas" id="cardapio">
             <article class="produto">
-                <img src="bolo1.jpg" alt="Bolo Confeitado decorado" />
-                <p>Bolo Confeitado com Flores</p>
+                <img src="imagens/bolo1.jpg" alt="Bolo Confeitado decorado" />
+                <p>Bolo Confeitado decorado</p>
             </article>
             <article class="produto">
-                <img src="bolo2.jpg" alt="Bolo de Noiva clássico" />
+                <img src="imagens/bolo2.jpg" alt="Bolo de Noiva clássico" />
                 <p>Bolo de Noiva Clássico</p>
             </article>
             <article class="produto">
-                <img src="bolo3.jpg" alt="Bolo de Rolo tradicional" />
-                <p>Bolo de Rolo Tradicional</p>
+                <img src="imagens/bolo3.jpg" alt="Bolo de Rolo tradicional" />
+                <p>Bolo de Rolo de doce de</p>
             </article>
         </div>
     </section>
 
-    <main>
-        <section id="cardapio" class="imagem-principal" aria-label="Imagem principal da confeitaria">
-            <img src="tamanhos.png" alt="Tamanhos de Bolos" />
-            <img src="cardapio.png" alt="Cardápio da Confeitaria da Luíza" />
-        </section>
+    <!-- Seção Cardápio -->
+    <div id="2" class="imagens-cardapio">
+        <h3 class="texto-cardapio">Cardápio (Passe o mouse pra visualizar)</h3>
+        <img src="imagens/cardapio.png" alt="Cardápio" class="imagem-interativa" />
+        
+        <h3 class="texto-cardapio">Tamanhos (Passe o mouse pra visualizar)</h3>
+        <img src="imagens/tamanhos.png" alt="Tamanhos" class="imagem-interativa" />
+    </div>
 
-        <section id="formulario-pedido" class="formulario-pedido" aria-labelledby="titulo-formulario">
-            <h2 id="titulo-formulario">Monte Seu Bolo</h2>
-            <form id="formPedido" onsubmit="enviarPedido(event)">
-                <div class="form-group">
-                    <label for="tipoBolo">Tipo de Bolo:</label>
-                    <select id="tipoBolo" name="tipoBolo" required>
-                        <option value="bolo-confeitado">Bolo Confeitado</option>
-                        <option value="bolo-de-noiva">Bolo de Noiva</option>
-                        <option value="bolo-de-rolo">Bolo de Rolo</option>
-                    </select>
-                </div>
+    <!-- Formulário de Pedido -->
+    <section id="formulario-pedido" class="formulario-pedido" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">Monte Seu Bolo</h2>
+        <form id="formPedido" onsubmit="enviarPedido(event)">
+            <div class="form-group">
+                <label for="tipoBolo">Tipo de Bolo:</label>
+                <select id="tipoBolo" name="tipoBolo" required>
+                    <option value="bolo-confeitado">Bolo Confeitado</option>
+                    <option value="bolo-de-noiva">Bolo de Noiva</option>
+                    <option value="bolo-de-rolo">Bolo de Rolo</option>
+                </select>
+            </div>
 
-                <div class="form-group" id="divMassa">
-                    <label for="massa">Massa:</label>
-                    <select id="massa" name="massa" required>
-                        <option value="chocolate">Chocolate</option>
-                        <option value="baunilha">Baunilha</option>
-                        <option value="bem-casado">Bem Casado</option>
-                    </select>
-                </div>
+            <div class="form-group" id="divMassa">
+                <label for="massa">Massa:</label>
+                <select id="massa" name="massa" required>
+                    <option value="chocolate">Chocolate</option>
+                    <option value="baunilha">Baunilha</option>
+                    <option value="bem-casado">Bem Casado</option>
+                </select>
+            </div>
 
-                <div class="form-group" id="divRecheio">
-                    <label for="recheio">Recheio:</label>
-                    <select id="recheio" name="recheio" required>
-                        <option value="chocolate">Chocolate</option>
-                        <option value="chocolate-crocante">Chocolate Crocante</option>
-                        <option value="ninho">Ninho</option>
-                        <option value="bem-casado">Bem Casado</option>
-                        <option value="coco-com-abacaxi">Coco com Abacaxi</option>
-                        <option value="chocolate-branco-com-geleia-de-morango">Chocolate Branco com Geleia de
-                            Morango</option>
-                    </select>
-                </div>
+            <div class="form-group" id="divRecheio">
+                <label for="recheio">Recheio:</label>
+                <select id="recheio" name="recheio" required>
+                    <option value="chocolate">Chocolate</option>
+                    <option value="chocolate-crocante">Chocolate Crocante</option>
+                    <option value="ninho">Ninho</option>
+                    <option value="bem-casado">Bem Casado</option>
+                    <option value="coco-com-abacaxi">Coco com Abacaxi</option>
+                    <option value="chocolate-branco-com-geleia-de-morango">Chocolate Branco com Geleia de Morango</option>
+                </select>
+            </div>
 
-                <div class="form-group" id="semRecheio" hidden>
-                    <select id="semRecheioSelect" name="semRecheio" disabled>
-                        <option value="semRecheio">Sem Recheio</option>
-                    </select>
-                </div>
+            <div class="form-group" id="semRecheio" hidden>
+                <select id="semRecheioSelect" name="semRecheio" disabled>
+                    <option value="semRecheio">Sem Recheio</option>
+                </select>
+            </div>
 
-                <div class="form-group" id="cobertura" hidden>
-                    <label for="cobertura">Cobertura:</label>
-                    <select id="coberturaSelect" name="cobertura" required>
-                        <option value="chantininho">Chantininho</option>
-                        <option value="ganache">Ganache</option>
-                    </select>
-                </div>
+            <div class="form-group" id="cobertura" hidden>
+                <label for="cobertura">Cobertura:</label>
+                <select id="coberturaSelect" name="cobertura" required>
+                    <option value="chantininho">Chantininho</option>
+                    <option value="ganache">Ganache</option>
+                </select>
+            </div>
 
-                <div class="form-group" id="tamanho">
-                    <label for="peso">Tamanho (CM):</label>
-                    <select id="peso" name="peso" required>
-                        <option value="14">14</option>
-                        <option value="16">16</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                    </select>
-                </div>
-                <button type="submit">Enviar Pedido via WhatsApp</button>
-            </form>
-        </section>
-    </main>
+            <div class="form-group" id="1">
+                <label for="peso">Tamanho (CM):</label>
+                <select id="peso" name="peso" required>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                </select>
+            </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tipoBoloSelect = document.getElementById('tipoBolo');
-            const massaSelect = document.getElementById('massa');
-            const recheioSelect = document.getElementById('recheio');
-            const pesoSelect = document.getElementById('peso');
-            const divMassa = document.getElementById('divMassa');
-            const divRecheio = document.getElementById('divRecheio');
-            const semRecheio = document.getElementById('semRecheio');
-            const semRecheioSelect = document.getElementById('semRecheioSelect');
-            const cobertura = document.getElementById('cobertura');
-            const coberturaSelectElement = document.getElementById('coberturaSelect');
-            const tamanho = document.getElementById('tamanho');
+            <button type="submit">Enviar Pedido via WhatsApp</button>
+        </form>
+    </section>
 
-            function updateOptions() {
-                const tipoBolo = tipoBoloSelect.value;
+    <!-- Redes Sociais -->
+    <section class="redes-sociais" id="redes-sociais" aria-labelledby="titulo-redes-sociais">
+        <h2>Siga-nos</h2>
+        <div class="icones-redes">
+            <a href="https://www.instagram.com/donna_luiza/" target="_blank" aria-label="Instagram">
+                <i class="fa fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/DonnaLuizaa" target="_blank" aria-label="Facebook">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a href="https://wa.me/5581995651934" target="_blank" aria-label="WhatsApp">
+                <i class="fa fa-whatsapp"></i>
+            </a>
+        </div>
+    </section>
 
-                // Resetar a exibição dos campos
-                divMassa.style.display = 'block';
-                divRecheio.style.display = 'block';
-                tamanho.style.display = 'block';
-                cobertura.style.display = 'none';
-                semRecheio.style.display = 'none';
+    <!-- Modal -->
+    <div id="imagemModal" class="imagem-modal-container">
+        <img id="imagemExpandida" class="imagem-expandida" src="" alt="Imagem Expandida">
+    </div>
 
-                // Limpar opções dos selects
-                massaSelect.innerHTML = '';
-                recheioSelect.innerHTML = '';
-                pesoSelect.innerHTML = '';
-                coberturaSelectElement.innerHTML = '';
-
-                if (tipoBolo === 'bolo-confeitado') {
-                    cobertura.style.display = 'block';
-                    ['Chocolate', 'Baunilha', 'Bem Casado'].forEach(option => {
-                        massaSelect.add(new Option(option, option.toLowerCase().replace(' ', '-')));
-                    });
-                    [
-                        'Chocolate',
-                        'Chocolate Crocante',
-                        'Ninho',
-                        'Bem Casado',
-                        'Coco com Abacaxi',
-                        'Chocolate Branco com Geleia de Morango'
-                    ].forEach(option => {
-                        recheioSelect.add(new Option(option, option.toLowerCase().replace(' ', '-')));
-                    });
-                    ['Chantininho', 'Ganache'].forEach(option => {
-                        coberturaSelectElement.add(new Option(option, option.toLowerCase().replace(' ', '-')));
-                    });
-                    [14, 16, 20, 25].forEach(option => {
-                        pesoSelect.add(new Option(option, option));
-                    });
-                } else if (tipoBolo === 'bolo-de-noiva') {
-                    divMassa.style.display = 'none';
-                    divRecheio.style.display = 'none';
-                    [14, 16, 20, 25].forEach(option => {
-                        pesoSelect.add(new Option(option, option));
-                    });
-                } else if (tipoBolo === 'bolo-de-rolo') {
-                    divMassa.style.display = 'none';
-                    divRecheio.style.display = 'block';
-                    semRecheio.style.display = 'none';
-                    semRecheioSelect.hidden = true;
-                    recheioSelect.innerHTML = '';
-                    ['Goiabada', 'Noiva', 'Doce de Leite'].forEach(option => {
-                        recheioSelect.add(new Option(option, option.toLowerCase().replace(' ', '-')));
-                    });
-                    pesoSelect.innerHTML = '';
-                    ['500gr', '1kg'].forEach(option => {
-                        pesoSelect.add(new Option(option, option));
-                    });
-                }
-            }
-
-            tipoBoloSelect.addEventListener('change', updateOptions);
-            updateOptions();
-        });
-
-        function enviarPedido(event) {
-            event.preventDefault();
-
-            const tipoBolo = document.getElementById('tipoBolo').value;
-            let massa = '';
-            let recheio = '';
-            let coberturaSelect = document.getElementById("coberturaSelect");
-            let cobertura = "";
-            const pesoSelect = document.getElementById('peso');
-            const peso = pesoSelect.value;
-
-            if (tipoBolo === 'bolo-confeitado') {
-                massa = document.getElementById('massa').value;
-                recheio = document.getElementById('recheio').value;
-                cobertura = coberturaSelect.value;
-            } else if (tipoBolo === 'bolo-de-rolo') {
-                recheio = document.getElementById('recheio').value;
-            }
-
-            function formatarTexto(texto) {
-                return texto
-                    .split('-')
-                    .map((palavra) => palavra.charAt(0).toUpperCase() + palavra.slice(1))
-                    .join(' ');
-            }
-            const tipoBoloFormatado = formatarTexto(tipoBolo);
-            const massaFormatada = formatarTexto(massa);
-            const recheioFormatada = formatarTexto(recheio);
-            const coberturaFormatada = formatarTexto(cobertura);
-
-            let mensagem = '';
-
-            if (tipoBolo === 'bolo-de-rolo') {
-                mensagem = `Olá Donna Luiza, gostaria de um bolo ${tipoBoloFormatado} com recheio de ${recheioFormatada} de ${peso}.`;
-            } else if (tipoBolo === 'bolo-de-noiva') {
-                mensagem = `Olá Donna Luiza, gostaria de um bolo ${tipoBoloFormatado} de ${peso} CM.`;
-            }
-
-            else {
-                mensagem = `Olá Donna Luiza, gostaria de um bolo ${tipoBoloFormatado} ${massaFormatada} com recheio ${recheioFormatada} e cobertura de ${coberturaFormatada} de ${peso} CM.`;
-            }
-
-            const mensagemCodificada = encodeURIComponent(mensagem);
-            const numeroWhatsApp = '5581995651934'; // Substitua pelo seu número
-
-            window.location.href = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

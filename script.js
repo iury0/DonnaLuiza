@@ -1,41 +1,174 @@
-function enviarPedido(event) {
-  event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  const imagensInterativas = document.querySelectorAll('.imagem-interativa');
+  const modal = document.getElementById('imagemModal');
+  const imagemExpandida = document.getElementById('imagemExpandida');
 
-  const tipoBolo = document.getElementById('tipoBolo').value;
-  let massa = "";
-  let recheio = "";
-  
-  if (tipoBolo !== "bolo-de-rolo") {
-    massa = document.getElementById('massa').value;
-    recheio = document.getElementById('recheio').value;
-  }
-  
-  const peso = document.getElementById('peso').value;
-
-  // Função para formatar texto: "bolo-de-rolo" -> "Bolo de Rolo"
-  function formatarTexto(texto) {
-    return texto
-      .split('-')
-      .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1))
-      .join(' ');
+  function abrirModal(src) {
+    imagemExpandida.src = src;
+    modal.style.display = 'flex';
   }
 
-  const tipoBoloFormatado = formatarTexto(tipoBolo);
-  const massaFormatada = formatarTexto(massa);
-  const recheioFormatado = formatarTexto(recheio);
-
-  let mensagem = "";
-
-  if (tipoBolo === "bolo-de-rolo") {
-    mensagem = `Olá Donna Luíza, gostaria de um bolo ${tipoBoloFormatado} de ${peso} kg.`;
-  } else {
-    mensagem = `Olá Donna Luíza, gostaria de um bolo ${tipoBoloFormatado} ${massaFormatada} com recheio ${recheioFormatado} de ${peso} kg.`;
+  function fecharModal() {
+    modal.style.display = 'none';
+    imagemExpandida.src = '';
   }
 
-  const mensagemCodificada = encodeURIComponent(mensagem);
+  imagensInterativas.forEach(img => {
+    img.addEventListener('click', () => abrirModal(img.src));
+  });
 
-  // Substitua o número abaixo pelo seu número com DDI + DDD, sem espaços ou símbolos
-  const numeroWhatsApp = "5581995651934";
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) fecharModal();
+  });
 
-  window.location.href = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
-}
+  const tipoBoloSelect = document.getElementById('tipoBolo');
+  const massaSelect = document.getElementById('massa');
+  const recheioSelect = document.getElementById('recheio');
+  const pesoSelect = document.getElementById('peso');
+  const divMassa = document.getElementById('divMassa');
+  const divRecheio = document.getElementById('divRecheio');
+  const semRecheio = document.getElementById('semRecheio');
+  const semRecheioSelect = document.getElementById('semRecheioSelect');
+  const cobertura = document.getElementById('cobertura');
+  const coberturaSelectElement = document.getElementById('coberturaSelect');
+  const tamanho = document.getElementById('tamanho');
+
+  function limparSelect(selectElement) {
+    while (selectElement.options.length > 0) {
+      selectElement.remove(0);
+    }
+  }
+
+  function updateOptions() {
+    const tipoBolo = tipoBoloSelect.value;
+
+    // Exibir tudo por padrão
+    divMassa.style.display = 'block';
+    divRecheio.style.display = 'block';
+    tamanho.style.display = 'block';
+    cobertura.style.display = 'none';
+    semRecheio.style.display = 'none';
+
+    // Reset `required`
+    massaSelect.required = true;
+    recheioSelect.required = true;
+    coberturaSelectElement.required = false;
+
+    limparSelect(massaSelect);
+    limparSelect(recheioSelect);
+    limparSelect(pesoSelect);
+    limparSelect(coberturaSelectElement);
+
+    if (tipoBolo === 'bolo-confeitado') {
+      cobertura.style.display = 'block';
+      coberturaSelectElement.required = true;
+
+      ['Chocolate', 'Baunilha', 'Bem Casado'].forEach(option => {
+        massaSelect.add(new Option(option, option.toLowerCase().replace(/\s+/g, '-')));
+      });
+
+      [
+        'Chocolate',
+        'Chocolate Crocante',
+        'Ninho',
+        'Bem Casado',
+        'Coco com Abacaxi',
+        'Chocolate Branco com Geleia de Morango'
+      ].forEach(option => {
+        recheioSelect.add(new Option(option, option.toLowerCase().replace(/\s+/g, '-')));
+      });
+
+      ['Chantininho', 'Ganache'].forEach(option => {
+        coberturaSelectElement.add(new Option(option, option.toLowerCase().replace(/\s+/g, '-')));
+      });
+
+      [14, 16, 20, 25].forEach(option => {
+        pesoSelect.add(new Option(option, option));
+      });
+
+    } else if (tipoBolo === 'bolo-de-noiva') {
+      divMassa.style.display = 'none';
+      divRecheio.style.display = 'none';
+      cobertura.style.display = 'none';
+
+      massaSelect.required = false;
+      recheioSelect.required = false;
+      coberturaSelectElement.required = false;
+
+      [14, 16, 20, 25].forEach(option => {
+        pesoSelect.add(new Option(option, option));
+      });
+
+    } else if (tipoBolo === 'bolo-de-rolo') {
+      divMassa.style.display = 'none';
+      divRecheio.style.display = 'block';
+      cobertura.style.display = 'none';
+
+      massaSelect.required = false;
+      recheioSelect.required = true;
+      coberturaSelectElement.required = false;
+
+      ['Goiabada', 'Noiva', 'Doce de Leite'].forEach(option => {
+        recheioSelect.add(new Option(option, option.toLowerCase().replace(/\s+/g, '-')));
+      });
+
+      ['500gr', '1kg'].forEach(option => {
+        pesoSelect.add(new Option(option, option));
+      });
+    }
+  }
+
+  tipoBoloSelect.addEventListener('change', updateOptions);
+  updateOptions();
+
+  window.enviarPedido = function (event) {
+    event.preventDefault();
+
+    const tipoBoloMap = {
+      'bolo-confeitado': 'Bolo Confeitado',
+      'bolo-de-noiva': 'Bolo de Noiva',
+      'bolo-de-rolo': 'Bolo de Rolo'
+    };
+
+    const tipoBolo = tipoBoloSelect.value;
+    let massa = null;
+    let recheio = null;
+    let cobertura = null;
+    const peso = pesoSelect.value;
+
+    if (tipoBolo === "bolo-confeitado") {
+      massa = massaSelect?.value || null;
+      recheio = recheioSelect?.value || null;
+      cobertura = coberturaSelectElement?.value || null;
+    } else if (tipoBolo === "bolo-de-rolo") {
+      recheio = recheioSelect?.value || null;
+    }
+
+    function formatarTexto(texto) {
+      return texto
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, l => l.toUpperCase());
+    }
+
+    let mensagem = `Olá, gostaria de fazer um pedido para: ${tipoBoloMap[tipoBolo] || tipoBolo}.`;
+
+    if (massa) {
+      mensagem += `\nMassa: ${formatarTexto(massa)}`;
+    }
+
+    if (recheio) {
+      mensagem += `\nRecheio: ${formatarTexto(recheio)}`;
+    }
+
+    if (cobertura) {
+      mensagem += `\nCobertura: ${formatarTexto(cobertura)}`;
+    }
+
+    if (peso) {
+      mensagem += `\nTamanho: ${peso}`;
+    }
+
+    const whatsappURL = `https://wa.me/5581995651934?text=${encodeURIComponent(mensagem)}`;
+    window.open(whatsappURL, "_blank");
+  };
+});

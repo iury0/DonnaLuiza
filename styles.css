@@ -9,7 +9,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #FFE1C5;
-    /* tom suave para confeitaria */
     color: #492E1D;
     line-height: 1.6;
     padding: 0 20px 40px;
@@ -68,7 +67,6 @@ html {
 .header nav a:hover,
 .header nav a:focus {
     color: #A0522D;
-    /* tom mais escuro para hover */
     outline: none;
 }
 
@@ -177,6 +175,7 @@ button[type="submit"]:focus {
     margin-bottom: 30px;
 }
 
+/* Produtos em miniatura */
 .produtos-miniaturas {
     display: flex;
     justify-content: center;
@@ -185,7 +184,7 @@ button[type="submit"]:focus {
 }
 
 .produto {
-    width: 200px;
+    width: 220px;
     text-align: center;
 }
 
@@ -212,7 +211,75 @@ button[type="submit"]:focus {
     color: #7B3F1A;
 }
 
-/* Responsividade */
+/* Redes Sociais */
+.redes-sociais {
+    text-align: center;
+    margin: 40px auto 20px;
+    padding: 20px;
+    background-color: #fff8dc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.redes-sociais h2 {
+    font-family: 'Cursive', sans-serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #492E1D;
+}
+
+.icones-redes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.icones-redes a {
+    font-size: 36px;
+    color: #A0522D;
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+.icones-redes a:hover,
+.icones-redes a:focus {
+    transform: scale(1.2);
+    color: #7B3F1A;
+}
+
+/* Imagens do Cardápio */
+.imagens-cardapio {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.imagem-interativa {
+    width: 250px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease, width 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Zoom APENAS em telas maiores */
+@media (min-width: 768px) {
+    .imagem-interativa:hover {
+        transform: scale(1.2);
+        z-index: 999;
+        position: relative;
+        width: 35vw;
+        height: auto;
+        max-width: 35%;
+    }
+}
+
+/* Responsividade geral */
 @media (max-width: 600px) {
     .header nav a {
         margin: 0 10px;
@@ -233,5 +300,105 @@ button[type="submit"]:focus {
         width: 80%;
         margin-bottom: 20px;
     }
-    
+}
+
+@media (max-width: 767px) {
+    .imagem-interativa {
+        width: 400px;
+    }
+
+    .produto {
+        width: 100%;
+    }
+
+    .produto img {
+        width: 100%;
+    }
+}
+
+/* Modal de imagem para mobile */
+.imagem-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.imagem-modal-container img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.imagens-cardapio {
+    display: flex;
+    flex-direction: column;
+    /* Faz com que os itens fiquem empilhados verticalmente */
+    align-items: center;
+    /* Alinha os itens no centro */
+}
+
+.texto-cardapio {
+    margin-bottom: 10px;
+    /* Adiciona um espaço entre o texto e a imagem */
+}
+
+.imagem-interativa {
+    max-width: 100%;
+    /* Para garantir que a imagem se ajuste corretamente ao tamanho da tela */
+    height: auto;
+    /* Mantém a proporção das imagens */
+}
+
+/* Header responsivo para telas pequenas */
+@media (max-width: 600px) {
+    .header {
+        padding: 10px 15px;
+    }
+
+    .header img {
+        max-width: 120px;
+        margin: 0 auto;
+        display: block;
+        margin-left: 0;
+        /* Remove margem esquerda para centralizar */
+    }
+
+    .header p.slogan {
+        font-size: 14px;
+        margin-top: 8px;
+        padding: 4px 10px;
+    }
+
+    .header nav {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .header nav a {
+        font-size: 16px;
+        margin: 0;
+        padding: 6px 10px;
+        border-radius: 6px;
+        background-color: #D2B48C;
+        color: #492E1D;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .header nav a:hover,
+    .header nav a:focus {
+        background-color: #A0522D;
+        color: #fff;
+        outline: none;
+    }
 }
