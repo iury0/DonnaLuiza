@@ -5,12 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function abrirModal(src) {
     imagemExpandida.src = src;
-    modal.style.display = 'flex';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
   function fecharModal() {
-    modal.style.display = 'none';
-    imagemExpandida.src = '';
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      imagemExpandida.src = '';
+    }, 300);
   }
 
   imagensInterativas.forEach(img => {
@@ -19,6 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) fecharModal();
+  });
+
+  // Fechar modal com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      fecharModal();
+    }
   });
 
   const tipoBoloSelect = document.getElementById('tipoBolo');
@@ -31,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const semRecheioSelect = document.getElementById('semRecheioSelect');
   const cobertura = document.getElementById('cobertura');
   const coberturaSelectElement = document.getElementById('coberturaSelect');
-  const tamanho = document.getElementById('tamanho');
 
   function limparSelect(selectElement) {
     while (selectElement.options.length > 0) {
@@ -45,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Exibir tudo por padrão
     divMassa.style.display = 'block';
     divRecheio.style.display = 'block';
-    tamanho.style.display = 'block';
     cobertura.style.display = 'none';
     semRecheio.style.display = 'none';
 
@@ -171,4 +180,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const whatsappURL = `https://wa.me/5581995651934?text=${encodeURIComponent(mensagem)}`;
     window.open(whatsappURL, "_blank");
   };
+
+  // Menu Mobile
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mainNav = document.querySelector('.main-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function toggleMenu() {
+    menuToggle.classList.toggle('active');
+    mainNav.classList.toggle('active');
+    document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+  }
+
+  menuToggle.addEventListener('click', toggleMenu);
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mainNav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  });
+
+  // Fechar menu ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (mainNav.classList.contains('active') && 
+        !mainNav.contains(e.target) && 
+        !menuToggle.contains(e.target)) {
+      toggleMenu();
+    }
+  });
 });

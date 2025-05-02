@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Donna Luiza</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,18 +16,29 @@
 
 <body>
     <header class="header" role="banner">
-        <img src="imagens/logo.png" alt="Confeitaria da Luíza Logo" />
-        <p class="slogan">Especialista em cake design</p>
-        <nav role="navigation" aria-label="Menu principal">
-            <a href="#">Sobre nós</a>
-            <a href="#2">Cardápio e tamanhos</a>
-            <a href="#formulario-pedido">Faça seu pedido</a>
-            <a href="#redes-sociais">Contato</a>
-        </nav>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="imagens/logo.png" alt="Confeitaria da Luíza Logo" class="logo" />
+                <p class="slogan">Especialista em cake design</p>
+            </div>
+            
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="main-nav" role="navigation" aria-label="Menu principal">
+                <ul class="nav-list">
+                    <li><a href="#sobre-nos" class="nav-link">Sobre nós</a></li>
+                    <li><a href="#cardapio-box" class="nav-link">Cardápio e tamanhos</a></li>
+                    <li><a href="#formulario-pedido" class="nav-link">Faça seu pedido</a></li>
+                    <li><a href="#redes-sociais" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- Seção Sobre Nós -->
-    <section id="tamanho" class="sobre-nos" aria-label="Sobre a Confeitaria Donna Luíza">
+    <section id="sobre-nos" class="sobre-nos" aria-label="Sobre a Confeitaria Donna Luíza">
         <h2>Sobre nós</h2>
         <p>
             A Confeitaria Donna Luiza é especializada em cake design, oferecendo bolos artesanais feitos com
@@ -41,18 +56,22 @@
             </article>
             <article class="produto">
                 <img src="imagens/bolo3.jpg" alt="Bolo de Rolo tradicional" />
-                <p>Bolo de Rolo de doce de</p>
+                <p>Bolo de Rolo de doce de leite</p>
             </article>
         </div>
     </section>
 
     <!-- Seção Cardápio -->
-    <div id="2" class="imagens-cardapio">
-        <h3 class="texto-cardapio">Cardápio (Passe o mouse pra visualizar)</h3>
-        <img src="imagens/cardapio.png" alt="Cardápio" class="imagem-interativa" />
+    <div id="cardapio" class="imagens-cardapio">
+        <div id="cardapio-box" class="cardapio-box">
+            <h3 class="texto-cardapio">Cardápio</h3>
+            <img src="imagens/cardapio.png" alt="Cardápio" class="imagem-interativa" />
+        </div>
         
-        <h3 class="texto-cardapio">Tamanhos (Passe o mouse pra visualizar)</h3>
-        <img src="imagens/tamanhos.png" alt="Tamanhos" class="imagem-interativa" />
+        <div class="cardapio-box">
+            <h3 class="texto-cardapio">Tamanhos</h3>
+            <img src="imagens/tamanhos.png" alt="Tamanhos" class="imagem-interativa" />
+        </div>
     </div>
 
     <!-- Formulário de Pedido -->
